@@ -18,9 +18,8 @@ import java.util.Date;
 @Entity
 @Table(name = "tb_ingresos")
 public class Ingresos {
-
     @Id
-    private int idIngre;
+    private int idingre;
     private Date fecha;
     private String descripcion;
     private String estado;
