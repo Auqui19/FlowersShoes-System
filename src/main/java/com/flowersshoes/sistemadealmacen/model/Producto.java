@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,5 +33,8 @@ public class Producto {
     private String descripcion;
     private String estado;
     private String imagen;
+
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    private List<Stock> stocks;
 
 }
