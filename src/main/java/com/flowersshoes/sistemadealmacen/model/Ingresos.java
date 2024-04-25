@@ -24,5 +24,4 @@ public class Ingresos {
     private String descripcion;
     private String estado;
     private int idTra;
-    // hola
 }
