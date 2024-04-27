@@ -17,9 +17,10 @@ import java.util.List;
 public class Talla {
     @Id
     private int idtalla;
-    private int talla;
+    private String talla;
+    private String estado;
 
-    @OneToMany(mappedBy = "talla" , cascade = {CascadeType.PERSIST , CascadeType.REMOVE})
-    private List<Producto> productos;
+    //@OneToMany(mappedBy = "talla" , cascade = {CascadeType.PERSIST , CascadeType.REMOVE})
+    //private List<Producto> productos;
 
 }
