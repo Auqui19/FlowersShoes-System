@@ -29,9 +29,10 @@ public class TallaImpl implements ITalla {
         }
 
         if (!tallaexistente){
+            talla.setEstado("Activo");
             tallaRepository.save(talla);
         }else {
-            throw new RuntimeException("La talla ya existe en la lista.");
+            throw new RuntimeException("La talla ya existe.");
         }
 
         return talla;

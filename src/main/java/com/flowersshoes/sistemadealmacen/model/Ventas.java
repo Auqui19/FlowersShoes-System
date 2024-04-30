@@ -19,9 +19,9 @@ public class Ventas {
     @Id
     private int idventa;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idtra")
-    private Trabajador trabajador;
+    //@ManyToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "idtra")
+    //private Trabajador trabajador;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idcli")

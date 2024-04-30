@@ -18,8 +18,9 @@ public class Color {
     @Id
     private int idcolor;
     private String color;
+    private String estado;
 
-    @OneToMany(mappedBy = "color" , cascade = {CascadeType.PERSIST , CascadeType.REMOVE})
-    private List<Producto> productos;
+    //@OneToMany(mappedBy = "color" , cascade = {CascadeType.PERSIST , CascadeType.REMOVE})
+    //private List<Producto> productos;
 
 }
