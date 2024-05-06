@@ -1,6 +1,8 @@
 package com.flowersshoes.sistemadealmacen.service.impl;
 
+import com.flowersshoes.sistemadealmacen.model.Cliente;
 import com.flowersshoes.sistemadealmacen.model.Ingresos;
+import com.flowersshoes.sistemadealmacen.model.dto.IngresosDto;
 import com.flowersshoes.sistemadealmacen.repository.IngresosRepository;
 import com.flowersshoes.sistemadealmacen.service.IIngresos;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,14 @@ public class IngresosImpl implements IIngresos {
 
     @Transactional
     @Override
-    public Ingresos save(Ingresos ingresos) {
+    public Ingresos save(IngresosDto ingresosDto) {
+        Ingresos ingresos = Ingresos.builder()
+                .idingre(ingresosDto.getIdingre())
+                .descripcion(ingresosDto.getDescripcion())
+                .estado(ingresosDto.getEstado())
+                .fecha(ingresosDto.getFecha())
+                .trabajador(ingresosDto.getTrabajador())
+                .build();
         return ingresosRepository.save(ingresos);
     }
 
@@ -29,5 +38,10 @@ public class IngresosImpl implements IIngresos {
     @Override
     public void delete(Ingresos ingresos) {
         ingresosRepository.delete(ingresos);
+    }
+
+    @Override
+    public boolean existsById(Integer id) {
+        return ingresosRepository.existsById(id);
     }
 }
