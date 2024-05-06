@@ -1,9 +1,6 @@
 package com.flowersshoes.sistemadealmacen.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,8 +17,15 @@ import java.io.Serializable;
 public class DetalleIngresos implements Serializable {
 
     @Id
-    @Column(name = "idingre")
-    private int idIngre;
-    private int idPro;
+    private int id;
+
+    @ManyToOne
+    @JoinColumn(name = "idingre", referencedColumnName = "idingre")
+    private Ingresos ingreso;
+
+    @ManyToOne
+    @JoinColumn(name = "idpro", referencedColumnName = "idpro")
+    private Producto producto;
+
     private int cantidad;
 }

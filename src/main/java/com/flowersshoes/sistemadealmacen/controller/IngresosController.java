@@ -7,32 +7,32 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/ingresos")
 public class IngresosController {
 
     @Autowired
     private IIngresos ingresosService;
 
-    @PostMapping("ingreso")
+    @PostMapping("/ingreso")
     @ResponseStatus(HttpStatus.CREATED)
     public Ingresos create(@RequestBody Ingresos ingresos){
         return ingresosService.save(ingresos);
     }
 
-    @PutMapping("ingreso")
+    @PutMapping("/ingreso")
     @ResponseStatus(HttpStatus.CREATED)
     public Ingresos update(@RequestBody Ingresos ingresos){
         return ingresosService.save(ingresos);
     }
 
-    @DeleteMapping("ingreso/{id}")
+    @DeleteMapping("/ingreso/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Integer id){
         Ingresos ingresosDelete = ingresosService.findById(id);
         ingresosService.delete(ingresosDelete);
     }
 
-    @GetMapping("ingreso/{id}")
+    @GetMapping("/ingreso/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Ingresos showById(@PathVariable Integer id){
         return ingresosService.findById(id);
