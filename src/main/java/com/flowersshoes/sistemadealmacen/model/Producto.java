@@ -1,5 +1,6 @@
 package com.flowersshoes.sistemadealmacen.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,6 +38,7 @@ public class Producto {
     private String imagen;
 
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("producto")
     private List<Stock> stocks;
 
 }
