@@ -1,8 +1,6 @@
 package com.flowersshoes.sistemadealmacen.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +22,7 @@ public class Trabajador {
     private String nombres;
     private String nrodocumento;
     private int idrol;
-    private int estado;
+    private String estado;
     private String tipodocumento;
     private String direccion;
     private String email;
