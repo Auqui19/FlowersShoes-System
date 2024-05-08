@@ -20,7 +20,10 @@ public class Color {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idcolor;
+
+    @Column(unique = true)
     private String color;
+
     private String estado;
 
     @OneToMany(mappedBy = "color" , cascade = {CascadeType.PERSIST , CascadeType.REMOVE})

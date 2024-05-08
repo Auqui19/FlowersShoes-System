@@ -1,5 +1,6 @@
 package com.flowersshoes.sistemadealmacen.service.impl;
 
+import com.flowersshoes.sistemadealmacen.model.Color;
 import com.flowersshoes.sistemadealmacen.model.Talla;
 import com.flowersshoes.sistemadealmacen.repository.IngresosRepository;
 import com.flowersshoes.sistemadealmacen.repository.TallaRepository;
@@ -18,24 +19,8 @@ public class TallaImpl implements ITalla {
 
     @Override
     public Talla save(Talla talla) {
-        boolean tallaexistente = false;
-
-        Iterable<Talla> tallasList = tallaRepository.findAll();
-        for ( Talla t: tallasList){
-            if (t.getTalla().equals(talla.getTalla()) ){
-                tallaexistente = true;
-                break;
-            }
-        }
-
-        if (!tallaexistente){
-            talla.setEstado("Activo");
-            tallaRepository.save(talla);
-        }else {
-            throw new RuntimeException("La talla ya existe.");
-        }
-
-        return talla;
+        talla.setEstado("Activo");
+        return tallaRepository.save(talla);
     }
 
     @Override
@@ -51,6 +36,18 @@ public class TallaImpl implements ITalla {
     @Override
     public boolean existsById(Integer id) {
         return tallaRepository.existsById(id);
+    }
+
+    @Override
+    public Talla status(Integer id) {
+        Talla talla = tallaRepository.findById(id).orElse(null);
+        if(talla.getEstado().equals("Activo")){
+            talla.setEstado("Inactivo");
+            return tallaRepository.save(talla);
+        }else{
+            talla.setEstado("Activo");
+            return tallaRepository.save(talla);
+        }
     }
 
 

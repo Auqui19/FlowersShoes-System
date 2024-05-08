@@ -1,6 +1,7 @@
 package com.flowersshoes.sistemadealmacen.service.impl;
 
 import com.flowersshoes.sistemadealmacen.model.Color;
+import com.flowersshoes.sistemadealmacen.model.Producto;
 import com.flowersshoes.sistemadealmacen.repository.ColorRepository;
 import com.flowersshoes.sistemadealmacen.service.IColor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,24 +17,8 @@ public class ColorImpl implements IColor {
 
     @Override
     public Color save(Color color) {
-       boolean colorexistente = false;
-
-       Iterable<Color> colorList = colorRepository.findAll();
-       for (Color c: colorList){
-           if (c.getColor().equals(color.getColor())){
-               colorexistente = true;
-               break;
-           }
-       }
-
-       if (!colorexistente){
-           color.setEstado("Activo");
-           colorRepository.save(color);
-       }else {
-           throw new RuntimeException(("El color ya existe."));
-       }
-
-        return color;
+       color.setEstado("Activo");
+       return colorRepository.save(color);
     }
 
     @Override
@@ -49,5 +34,17 @@ public class ColorImpl implements IColor {
     @Override
     public boolean existsById(Integer id) {
         return colorRepository.existsById(id);
+    }
+
+    @Override
+    public Color status(Integer id) {
+        Color color = colorRepository.findById(id).orElse(null);
+        if(color.getEstado().equals("Activo")){
+            color.setEstado("Inactivo");
+            return colorRepository.save(color);
+        }else{
+            color.setEstado("Activo");
+            return colorRepository.save(color);
+        }
     }
 }

@@ -9,4 +9,5 @@ public interface IColor {
     List<Color> findAll();
     Color findById(Integer id);
     boolean existsById(Integer id);
+    Color status(Integer id);
 }

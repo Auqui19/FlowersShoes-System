@@ -9,5 +9,5 @@ public interface ITalla {
     List<Talla> findAll();
     Talla findById(Integer id);
     boolean existsById(Integer id);
-
+    Talla status(Integer id);
 }

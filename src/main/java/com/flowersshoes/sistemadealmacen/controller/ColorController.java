@@ -42,4 +42,13 @@ public class ColorController {
         }
     }
 
+    @DeleteMapping("status/{id}")
+    public ResponseEntity<?> status(@PathVariable Integer id){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(colorService.status(id));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error:\":\"Error. Por favor intente mas tarde.\"}");
+        }
+    }
+
 }

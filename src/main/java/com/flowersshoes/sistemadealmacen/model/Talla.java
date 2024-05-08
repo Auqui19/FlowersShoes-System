@@ -20,6 +20,7 @@ public class Talla {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idtalla;
+    @Column(unique = true)
     private String talla;
     private String estado;
 

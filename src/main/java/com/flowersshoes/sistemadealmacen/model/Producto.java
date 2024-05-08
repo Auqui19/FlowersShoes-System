@@ -21,6 +21,7 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idpro;
+    @Column(unique = true)
     private String codbar;
     private String imagen;
     private String nompro;

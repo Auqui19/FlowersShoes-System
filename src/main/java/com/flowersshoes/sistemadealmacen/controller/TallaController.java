@@ -41,6 +41,14 @@ public class TallaController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"error\":\"Error. Por favor inténtelo más tarde.\"}");
         }
     }
+    @DeleteMapping("status/{id}")
+    public ResponseEntity<?> status(@PathVariable Integer id){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(tallaService.status(id));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error:\":\"Error. Por favor intente mas tarde.\"}");
+        }
+    }
 
 
 }

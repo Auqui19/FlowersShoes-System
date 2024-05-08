@@ -10,4 +10,5 @@ public interface IProducto {
     List<Producto> findAll();
     Producto findById(Integer id);
     boolean existsById(Integer id);
+    Producto status(Integer id);
 }
