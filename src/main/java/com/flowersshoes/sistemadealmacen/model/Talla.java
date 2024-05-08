@@ -1,5 +1,6 @@
 package com.flowersshoes.sistemadealmacen.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +21,8 @@ public class Talla {
     private String talla;
     private String estado;
 
-    //@OneToMany(mappedBy = "talla" , cascade = {CascadeType.PERSIST , CascadeType.REMOVE})
-    //private List<Producto> productos;
+    @OneToMany(mappedBy = "talla" , cascade = {CascadeType.PERSIST , CascadeType.REMOVE})
+    @JsonIgnoreProperties("talla")
+    private List<Producto> productos;
 
 }
