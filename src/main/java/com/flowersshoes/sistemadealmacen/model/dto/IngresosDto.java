@@ -21,5 +21,5 @@ public class IngresosDto implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idtra")
     @JsonManagedReference
-    private Trabajador trabajador;
+    private Trabajador idtra;
 }

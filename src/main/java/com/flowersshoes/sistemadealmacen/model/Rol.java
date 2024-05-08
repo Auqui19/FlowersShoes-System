@@ -1,5 +1,6 @@
 package com.flowersshoes.sistemadealmacen.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class Rol {
     private int idrol;
     private String nomrol;
 
-    @OneToMany(mappedBy = "rol", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "idrol", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Trabajador> trabajadores;
 }
