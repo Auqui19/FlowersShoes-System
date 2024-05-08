@@ -1,5 +1,7 @@
 package com.flowersshoes.sistemadealmacen.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,11 +18,13 @@ import java.util.List;
 @Table(name = "tb_talla")
 public class Talla {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idtalla;
     private String talla;
     private String estado;
 
-    //@OneToMany(mappedBy = "talla" , cascade = {CascadeType.PERSIST , CascadeType.REMOVE})
-    //private List<Producto> productos;
+    @OneToMany(mappedBy = "talla" , cascade = {CascadeType.PERSIST , CascadeType.REMOVE})
+    @JsonIgnore
+    private List<Producto> productos;
 
 }

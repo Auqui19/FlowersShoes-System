@@ -27,6 +27,7 @@ public class ColorImpl implements IColor {
        }
 
        if (!colorexistente){
+           color.setEstado("Activo");
            colorRepository.save(color);
        }else {
            throw new RuntimeException(("El color ya existe."));
@@ -38,5 +39,15 @@ public class ColorImpl implements IColor {
     @Override
     public List<Color> findAll() {
         return colorRepository.findAll();
+    }
+
+    @Override
+    public Color findById(Integer id) {
+        return colorRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public boolean existsById(Integer id) {
+        return colorRepository.existsById(id);
     }
 }

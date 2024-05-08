@@ -43,5 +43,15 @@ public class TallaImpl implements ITalla {
         return tallaRepository.findAll();
     }
 
+    @Override
+    public Talla findById(Integer id) {
+        return tallaRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public boolean existsById(Integer id) {
+        return tallaRepository.existsById(id);
+    }
+
 
 }
