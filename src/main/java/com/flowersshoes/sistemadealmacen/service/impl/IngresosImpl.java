@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class IngresosImpl implements IIngresos {
 
@@ -23,7 +25,7 @@ public class IngresosImpl implements IIngresos {
                 .descripcion(ingresosDto.getDescripcion())
                 .estado(ingresosDto.getEstado())
                 .fecha(ingresosDto.getFecha())
-                .trabajador(ingresosDto.getTrabajador())
+                .idtra(ingresosDto.getIdtra())
                 .build();
         return ingresosRepository.save(ingresos);
     }
@@ -39,6 +41,12 @@ public class IngresosImpl implements IIngresos {
     public void delete(Ingresos ingresos) {
         ingresosRepository.delete(ingresos);
     }
+
+    @Override
+    public Iterable<Ingresos> findAll() {
+        return ingresosRepository.findAll();
+    }
+
 
     @Override
     public boolean existsById(Integer id) {

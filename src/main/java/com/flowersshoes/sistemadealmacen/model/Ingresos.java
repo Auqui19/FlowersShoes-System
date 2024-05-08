@@ -1,11 +1,8 @@
 package com.flowersshoes.sistemadealmacen.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.io.Serializable;
 import java.util.Date;
 
 @Data
@@ -15,16 +12,16 @@ import java.util.Date;
 @Builder
 @Entity
 @Table(name = "tb_ingresos")
-public class Ingresos implements Serializable {
+public class Ingresos {
 
     @Id
-    private int idingre;
+    private Integer idingre;
     private String descripcion;
     private String estado;
     private Date fecha;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idtra")
-    @JsonManagedReference
-    private Trabajador trabajador;
+    @JsonIgnoreProperties("ingresos")
+    private Trabajador idtra;
 }
