@@ -16,8 +16,10 @@ import java.util.List;
 @Entity
 @Table(name = "tb_producto")
 public class Producto {
+
+    //Me salia error , ponieron idproducto pero en la base de datos era idpro
     @Id
-    private int idproducto;
+    private int idpro;
     private String nompro;
     private Double precio;
 

@@ -1,7 +1,7 @@
-package com.flowersshoes.sistemadealmacen.model;
+package com.flowersshoes.sistemadealmacen.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.flowersshoes.sistemadealmacen.model.Trabajador;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,15 +9,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
 @Builder
-@Entity
-@Table(name = "tb_ingresos")
-public class Ingresos implements Serializable {
+public class IngresosDto implements Serializable {
 
-    @Id
     private int idingre;
     private String descripcion;
     private String estado;
