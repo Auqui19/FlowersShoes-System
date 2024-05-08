@@ -24,13 +24,9 @@ public class ColorController {
         }
     }
 
-    @PostMapping("save")
-    public ResponseEntity<?> save(@RequestBody Color color) {
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(colorService.save(color));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"error\":\"Error. Por favor inténtelo más tarde.\"}");
-        }
+    @PostMapping("saveColor")
+    public Color save(@RequestBody Color color){
+        return colorService.save(color);
     }
 
 }
