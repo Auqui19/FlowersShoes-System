@@ -24,4 +24,6 @@ public class Ingresos {
     @JoinColumn(name = "idtra")
     @JsonIgnoreProperties("ingresos")
     private Trabajador idtra;
+
+
 }

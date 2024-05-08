@@ -32,7 +32,7 @@ public class Trabajador {
     @JoinColumn(name = "idrol", referencedColumnName = "idrol", insertable = false, updatable = false)
     private Rol rol;
 
-    @OneToMany(mappedBy = "trabajador", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "idtra", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Ingresos> ingresos;
 }
