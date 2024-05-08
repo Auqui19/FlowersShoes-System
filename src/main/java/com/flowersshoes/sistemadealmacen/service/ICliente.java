@@ -8,5 +8,4 @@ public interface ICliente {
     Cliente BuscarCliente(Integer id);
     void DeleteCliente (Cliente C);
     Iterable<Cliente> FindAllClientes();
-    boolean ExystClienteById(Integer id);
 }
