@@ -7,9 +7,7 @@ import com.flowersshoes.sistemadealmacen.model.dto.ProductosDto;
 import com.flowersshoes.sistemadealmacen.repository.ColorRepository;
 import com.flowersshoes.sistemadealmacen.repository.ProductoRepository;
 import com.flowersshoes.sistemadealmacen.repository.TallaRepository;
-import com.flowersshoes.sistemadealmacen.service.IColor;
 import com.flowersshoes.sistemadealmacen.service.IProducto;
-import com.flowersshoes.sistemadealmacen.service.ITalla;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,21 +29,21 @@ public class ProductoImpl implements IProducto {
     public Producto save(ProductosDto productoDto) {
         Color color = colorRepository.findById(productoDto.getIdcolor()).orElse(null);
         Talla talla = tallaRepository.findById(productoDto.getIdtalla()).orElse(null);
-       Producto producto = new Producto();
-       producto.setIdpro(productoDto.getIdpro());
-       producto.setCodbar(productoDto.getNompro()+productoDto.getIdtalla()+productoDto.getIdcolor());
-       producto.setNompro(productoDto.getNompro());
-       producto.setPrecio(productoDto.getPrecio());
-       producto.setTalla(talla);
-       producto.setColor(color);
-       producto.setCategoria(productoDto.getCategoria());
-       producto.setTemporada(productoDto.getTemporada());
-       producto.setDescripcion(productoDto.getDescripcion());
-       producto.setEstado("Activo");
+        Producto producto = new Producto();
+        producto.setIdpro(productoDto.getIdpro());
+        producto.setCodbar(productoDto.getNompro() + productoDto.getIdtalla() + productoDto.getIdcolor());
+        producto.setNompro(productoDto.getNompro());
+        producto.setPrecio(productoDto.getPrecio());
+        producto.setTalla(talla);
+        producto.setColor(color);
+        producto.setCategoria(productoDto.getCategoria());
+        producto.setTemporada(productoDto.getTemporada());
+        producto.setDescripcion(productoDto.getDescripcion());
+        producto.setEstado("Activo");
 
-       producto = productoRepository.save(producto);
-       producto.setImagen(producto.getIdpro()+".jpg");
-       return productoRepository.save(producto);
+        producto = productoRepository.save(producto);
+        producto.setImagen(producto.getIdpro() + ".jpg");
+        return productoRepository.save(producto);
 
     }
 
@@ -68,10 +66,10 @@ public class ProductoImpl implements IProducto {
     public Producto status(Integer id) {
 
         Producto producto = productoRepository.findById(id).orElse(null);
-        if(producto.getEstado().equals("Activo")){
+        if (producto.getEstado().equals("Activo")) {
             producto.setEstado("Inactivo");
             return productoRepository.save(producto);
-        }else{
+        } else {
             producto.setEstado("Activo");
             return productoRepository.save(producto);
         }

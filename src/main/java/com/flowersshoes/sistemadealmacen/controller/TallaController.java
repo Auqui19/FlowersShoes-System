@@ -1,6 +1,5 @@
 package com.flowersshoes.sistemadealmacen.controller;
 
-import com.flowersshoes.sistemadealmacen.model.Color;
 import com.flowersshoes.sistemadealmacen.model.Talla;
 import com.flowersshoes.sistemadealmacen.service.ITalla;
 import org.springframework.beans.factory.annotation.Autowired;

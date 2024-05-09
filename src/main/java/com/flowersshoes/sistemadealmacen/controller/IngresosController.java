@@ -1,12 +1,9 @@
 package com.flowersshoes.sistemadealmacen.controller;
 
 import com.flowersshoes.sistemadealmacen.model.Ingresos;
-import com.flowersshoes.sistemadealmacen.model.Trabajador;
 import com.flowersshoes.sistemadealmacen.model.dto.IngresosDto;
 import com.flowersshoes.sistemadealmacen.model.payload.MensajeResponse;
 import com.flowersshoes.sistemadealmacen.repository.IngresosRepository;
-import com.flowersshoes.sistemadealmacen.repository.TrabajadorRepository;
-import com.flowersshoes.sistemadealmacen.response.ingresos.IngresoResponse;
 import com.flowersshoes.sistemadealmacen.service.IIngresos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/ingresos")
@@ -27,33 +23,6 @@ public class IngresosController {
 
     @Autowired
     private IngresosRepository ingresosRepository;
-
-    @Autowired
-    private TrabajadorRepository trabajadorRespository;
-
-    @PostMapping("/add")
-    public IngresoResponse addIngreso(@RequestBody Ingresos ingreso){
-        if(ingreso.getIdingre() != null){
-            return new IngresoResponse("99", "Id parameter not allowed");
-        }
-        Trabajador trabajador = ingreso.getIdtra();
-        // Obtener el ID del trabajador del objeto Ingresos
-        Integer idTraId = trabajador.getIdtra();
-        // Buscar el trabajador en la base de datos por su ID
-        Optional<Trabajador> trabajadorOptional = trabajadorRespository.findById(idTraId);
-        // Verificar si se encontró el trabajador
-        if (trabajadorOptional.isPresent()) {
-            // Asignar el trabajador al objeto Ingresos
-            ingreso.setIdtra(trabajadorOptional.get());
-            // Guardar el ingreso en la base de datos
-            ingresosRepository.save(ingreso);
-            return new IngresoResponse("01", null);
-        } else {
-            // El trabajador no fue encontrado en la base de datos
-            return new IngresoResponse("99", "Trabajador not found for ID: " + idTraId);
-        }
-    }
-
 
 
     @GetMapping("/ingreso")
@@ -76,7 +45,6 @@ public class IngresosController {
                     .descripcion(ingreso.getDescripcion())
                     .estado(ingreso.getEstado())
                     .fecha(ingreso.getFecha())
-                    .idtra(ingreso.getIdtra())
                     .build());
         }
 
@@ -98,7 +66,6 @@ public class IngresosController {
                     .descripcion(ingresosSave.getDescripcion())
                     .estado(ingresosSave.getEstado())
                     .fecha(ingresosSave.getFecha())
-                    .idtra(ingresosSave.getIdtra())
                     .build();
 
             return new ResponseEntity<>( MensajeResponse.builder()
@@ -128,7 +95,6 @@ public class IngresosController {
                         .descripcion(ingresosUpdate.getDescripcion())
                         .estado(ingresosUpdate.getEstado())
                         .fecha(ingresosUpdate.getFecha())
-                        .idtra(ingresosUpdate.getIdtra())
                         .build();
 
                 return new ResponseEntity<>( MensajeResponse.builder()
@@ -189,7 +155,6 @@ public class IngresosController {
                                 .descripcion(ingresos.getDescripcion())
                                 .estado(ingresos.getEstado())
                                 .fecha(ingresos.getFecha())
-                                .idtra(ingresos.getIdtra())
                                 .build())
                         .build()
                 ,HttpStatus.OK);

@@ -13,13 +13,11 @@ import java.util.Date;
 @Builder
 public class IngresosDto implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idingre;
     private String descripcion;
     private String estado;
     private Date fecha;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idtra")
-    @JsonManagedReference
-    private Trabajador idtra;
+    private int idtra;
 }

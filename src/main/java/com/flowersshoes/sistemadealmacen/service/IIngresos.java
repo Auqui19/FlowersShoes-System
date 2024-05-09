@@ -2,9 +2,6 @@ package com.flowersshoes.sistemadealmacen.service;
 
 import com.flowersshoes.sistemadealmacen.model.Ingresos;
 import com.flowersshoes.sistemadealmacen.model.dto.IngresosDto;
-import org.w3c.dom.stylesheets.LinkStyle;
-
-import java.util.List;
 
 public interface IIngresos {
 

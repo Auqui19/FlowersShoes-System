@@ -1,6 +1,5 @@
 package com.flowersshoes.sistemadealmacen.service.impl;
 
-import com.flowersshoes.sistemadealmacen.model.Cliente;
 import com.flowersshoes.sistemadealmacen.model.Ingresos;
 import com.flowersshoes.sistemadealmacen.model.dto.IngresosDto;
 import com.flowersshoes.sistemadealmacen.repository.IngresosRepository;
@@ -8,8 +7,6 @@ import com.flowersshoes.sistemadealmacen.service.IIngresos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 public class IngresosImpl implements IIngresos {
@@ -25,7 +22,6 @@ public class IngresosImpl implements IIngresos {
                 .descripcion(ingresosDto.getDescripcion())
                 .estado(ingresosDto.getEstado())
                 .fecha(ingresosDto.getFecha())
-                .idtra(ingresosDto.getIdtra())
                 .build();
         return ingresosRepository.save(ingresos);
     }

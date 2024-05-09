@@ -2,10 +2,7 @@ package com.flowersshoes.sistemadealmacen.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
@@ -13,26 +10,32 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Builder
 @Entity
 @Table(name = "tb_trabajador")
 public class Trabajador {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idtra;
     private String nombres;
+
+    @Column(unique = true)
     private String nrodocumento;
-    private int idrol;
+
+    @ManyToOne
+    @JoinColumn(name = "idrol")
+    private Rol rol;
+
     private String estado;
     private String tipodocumento;
     private String direccion;
+
+    @Column(unique = true)
     private String email;
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "idrol", referencedColumnName = "idrol", insertable = false, updatable = false)
-    private Rol rol;
-
-    @OneToMany(mappedBy = "idtra", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "trabajador", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Ingresos> ingresos;
 }

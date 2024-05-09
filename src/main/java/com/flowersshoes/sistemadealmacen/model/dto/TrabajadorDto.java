@@ -8,16 +8,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductosDto {
+public class TrabajadorDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idpro;
-    private String nompro;
-    private Double precio;
-    private int idtalla;
-    private int idcolor;
-    private String categoria;
-    private String temporada;
-    private String descripcion;
-
+    private int idtra;
+    private String nombres;
+    private String nrodocumento;
+    private int idrol;
+    private String estado;
+    private String tipodocumento;
+    private String direccion;
+    private String email;
+    private String password;
 }

@@ -1,7 +1,6 @@
 package com.flowersshoes.sistemadealmacen.service.impl;
 
 import com.flowersshoes.sistemadealmacen.model.Color;
-import com.flowersshoes.sistemadealmacen.model.Producto;
 import com.flowersshoes.sistemadealmacen.repository.ColorRepository;
 import com.flowersshoes.sistemadealmacen.service.IColor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,8 @@ public class ColorImpl implements IColor {
 
     @Override
     public Color save(Color color) {
-       color.setEstado("Activo");
-       return colorRepository.save(color);
+        color.setEstado("Activo");
+        return colorRepository.save(color);
     }
 
     @Override
@@ -39,10 +38,10 @@ public class ColorImpl implements IColor {
     @Override
     public Color status(Integer id) {
         Color color = colorRepository.findById(id).orElse(null);
-        if(color.getEstado().equals("Activo")){
+        if (color.getEstado().equals("Activo")) {
             color.setEstado("Inactivo");
             return colorRepository.save(color);
-        }else{
+        } else {
             color.setEstado("Activo");
             return colorRepository.save(color);
         }

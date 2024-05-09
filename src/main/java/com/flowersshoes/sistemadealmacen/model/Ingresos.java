@@ -1,6 +1,6 @@
 package com.flowersshoes.sistemadealmacen.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.Date;
@@ -15,6 +15,7 @@ import java.util.Date;
 public class Ingresos {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idingre;
     private String descripcion;
     private String estado;
@@ -22,8 +23,6 @@ public class Ingresos {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idtra")
-    @JsonIgnoreProperties("ingresos")
-    private Trabajador idtra;
-
+    private Trabajador trabajador;
 
 }

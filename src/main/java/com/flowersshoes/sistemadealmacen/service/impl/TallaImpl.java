@@ -1,8 +1,6 @@
 package com.flowersshoes.sistemadealmacen.service.impl;
 
-import com.flowersshoes.sistemadealmacen.model.Color;
 import com.flowersshoes.sistemadealmacen.model.Talla;
-import com.flowersshoes.sistemadealmacen.repository.IngresosRepository;
 import com.flowersshoes.sistemadealmacen.repository.TallaRepository;
 import com.flowersshoes.sistemadealmacen.service.ITalla;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +39,10 @@ public class TallaImpl implements ITalla {
     @Override
     public Talla status(Integer id) {
         Talla talla = tallaRepository.findById(id).orElse(null);
-        if(talla.getEstado().equals("Activo")){
+        if (talla.getEstado().equals("Activo")) {
             talla.setEstado("Inactivo");
             return tallaRepository.save(talla);
-        }else{
+        } else {
             talla.setEstado("Activo");
             return tallaRepository.save(talla);
         }

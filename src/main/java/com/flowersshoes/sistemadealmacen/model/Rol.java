@@ -1,6 +1,6 @@
 package com.flowersshoes.sistemadealmacen.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,10 +18,14 @@ import java.util.List;
 public class Rol {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idrol;
-    private String nomrol;
 
-    @OneToMany(mappedBy = "idrol", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @Column(unique = true)
+    private String nomrol;
+    private String estado;
+
+    @OneToMany(mappedBy = "rol", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Trabajador> trabajadores;
 }

@@ -6,8 +6,12 @@ import java.util.List;
 
 public interface ITalla {
     Talla save(Talla talla);
+
     List<Talla> findAll();
+
     Talla findById(Integer id);
+
     boolean existsById(Integer id);
+
     Talla status(Integer id);
 }
