@@ -17,11 +17,12 @@ import java.util.Date;
 @Table(name = "tb_ventas")
 public class Ventas {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idventa;
 
-    //@ManyToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "idtra")
-    //private Trabajador trabajador;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idtra")
+    private Trabajador trabajador;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idcli")
