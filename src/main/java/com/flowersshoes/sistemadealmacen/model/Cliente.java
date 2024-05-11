@@ -1,8 +1,6 @@
 package com.flowersshoes.sistemadealmacen.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +14,7 @@ import lombok.ToString;
 @Table(name = "tb_clientes")
 public class Cliente {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idcli;
     private String nomcli;
     private String apellidos;

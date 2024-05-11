@@ -28,11 +28,9 @@ public class Ventas {
     @JoinColumn(name = "idcli")
     private Cliente cliente;
 
-
     private Date fecha;
     private Double total;
     private String estado;
     private String estadocomprobante;
-
 
 }

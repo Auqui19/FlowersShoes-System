@@ -4,7 +4,7 @@ import com.flowersshoes.sistemadealmacen.model.Ingresos;
 import com.flowersshoes.sistemadealmacen.model.dto.IngresosDto;
 import com.flowersshoes.sistemadealmacen.model.payload.MensajeResponse;
 import com.flowersshoes.sistemadealmacen.repository.IngresosRepository;
-import com.flowersshoes.sistemadealmacen.service.IIngresos;
+import com.flowersshoes.sistemadealmacen.service.impl.IngresosImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -19,12 +19,22 @@ import java.util.List;
 public class IngresosController {
 
     @Autowired
-    private IIngresos ingresosService;
+    private IngresosImpl ingresosService;
 
     @Autowired
     private IngresosRepository ingresosRepository;
 
+    @PostMapping("/ingresos")
+    public int grabarIngreso(@RequestBody IngresosDto request) {
+        return ingresosService.grabarIngreso(request.getIdtra(), request.getDescripcion());
+    }
 
+
+
+
+
+
+    // Borrar si es posible
     @GetMapping("/ingreso")
     public ResponseEntity<?> showAll() {
         Iterable<Ingresos> ingresos = ingresosService.findAll();

@@ -8,12 +8,20 @@ import com.flowersshoes.sistemadealmacen.repository.ClienteRepository;
 import com.flowersshoes.sistemadealmacen.repository.TrabajadorRepository;
 import com.flowersshoes.sistemadealmacen.repository.VentaRepository;
 import com.flowersshoes.sistemadealmacen.service.IVenta;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.ParameterMode;
+import jakarta.persistence.StoredProcedureQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class VentaImpl implements IVenta {
+
+    @Autowired
+    EntityManager entityManager;
 
     @Autowired
     private VentaRepository ventaRepository;
@@ -26,7 +34,7 @@ public class VentaImpl implements IVenta {
 
     @Transactional
     @Override
-    public Ventas save(VentaDto ventaDto){
+    public Ventas save(VentaDto ventaDto) {
         Trabajador trabajador = trabajadorRepository.findById(ventaDto.getIdtra()).orElse(null);
         Cliente cliente = clienteRepository.findById(ventaDto.getIdcli()).orElse(null);
         Ventas venta = new Ventas();
@@ -46,16 +54,84 @@ public class VentaImpl implements IVenta {
 
     @Transactional
     @Override
-    public Ventas findById(Integer id) {return ventaRepository.findById(id).orElse(null); }
+    public Ventas findById(Integer id) {
+        return ventaRepository.findById(id).orElse(null);
+    }
 
     @Transactional
     @Override
-    public  void delete(Ventas venta){ventaRepository.delete(venta); }
+    public void delete(Ventas venta) {
+        ventaRepository.delete(venta);
+    }
 
     @Override
-    public Iterable<Ventas> findAll(){return ventaRepository.findAll(); }
+    public Iterable<Ventas> findAll() {
+        return ventaRepository.findAll();
+    }
 
     @Override
-    public boolean existsById(Integer id) {return ventaRepository.existsById(id); }
+    public boolean existsById(Integer id) {
+        return ventaRepository.existsById(id);
+    }
 
+    // Procedures
+
+    @Transactional
+    public Long grabarVenta(int idtra, int idcli) {
+        Cliente cliente = clienteRepository.findById(idcli).orElse(null);
+        Trabajador trabajador = trabajadorRepository.findById(idtra).orElse(null);
+        if (cliente != null && trabajador != null) {
+            StoredProcedureQuery query = entityManager.createStoredProcedureQuery("PA_GRABAR_VENTA")
+                    .registerStoredProcedureParameter("idtra", Integer.class, ParameterMode.IN)
+                    .registerStoredProcedureParameter("idcli", Integer.class, ParameterMode.IN)
+                    .registerStoredProcedureParameter("id", Long.class, ParameterMode.OUT)
+                    .setParameter("idtra", idtra)
+                    .setParameter("idcli", idcli);
+
+            query.execute();
+            return (Long) query.getOutputParameterValue("id");
+        } else {
+            return null;
+        }
+    }
+
+    @Transactional
+    public void eliminarVenta(int idventa) {
+        Ventas venta = ventaRepository.findById(idventa).orElse(null);
+        if (venta != null) {
+            StoredProcedureQuery query = entityManager.createStoredProcedureQuery("PA_ELIMINAR_VENTA")
+                    .registerStoredProcedureParameter("idventa", Integer.class, ParameterMode.IN)
+                    .setParameter("idventa", idventa);
+            query.execute();
+        }
+    }
+
+    @Transactional
+    public void restaurarVenta(int idventa) {
+        Ventas venta = ventaRepository.findById(idventa).orElse(null);
+        if (venta != null) {
+            StoredProcedureQuery query = entityManager.createStoredProcedureQuery("PA_RESTAURAR_VENTA")
+                    .registerStoredProcedureParameter("idventa", Integer.class, ParameterMode.IN)
+                    .setParameter("idventa", idventa);
+            query.execute();
+        }
+    }
+
+    @Transactional
+    public void editarVenta(int idventa, String estadoComprobante) {
+        Ventas venta = ventaRepository.findById(idventa).orElse(null);
+        if (venta != null) {
+            StoredProcedureQuery query = entityManager.createStoredProcedureQuery("PA_EDITAR_VENTA")
+                    .registerStoredProcedureParameter("idventa", Integer.class, ParameterMode.IN)
+                    .registerStoredProcedureParameter("estadoComprobante", String.class, ParameterMode.IN)
+                    .setParameter("idventa", idventa)
+                    .setParameter("estadoComprobante", estadoComprobante);
+            query.execute();
+        }
+    }
+
+    public List<Object[]> listarVentas() {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("PA_LISTAR_VENTAS");
+        return query.getResultList();
+    }
 }

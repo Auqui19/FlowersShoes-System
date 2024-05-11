@@ -3,11 +3,12 @@ package com.flowersshoes.sistemadealmacen.service;
 import com.flowersshoes.sistemadealmacen.model.Cliente;
 
 public interface ICliente {
-    Cliente SaveCliente(Cliente C);
 
-    Cliente BuscarCliente(Integer id);
+    Cliente save(Cliente cliente);
 
-    void DeleteCliente(Cliente C);
+    Cliente findById(Integer id);
 
-    Iterable<Cliente> FindAllClientes();
+    Cliente status(Integer id);
+
+    Iterable<Cliente> findAll();
 }

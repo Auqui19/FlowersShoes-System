@@ -15,6 +15,7 @@ import lombok.ToString;
 @Table(name = "tb_detalle_venta")
 public class DetalleVenta {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne
