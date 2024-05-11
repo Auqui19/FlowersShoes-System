@@ -24,7 +24,7 @@ public class IngresosController {
     @Autowired
     private IngresosRepository ingresosRepository;
 
-    @PostMapping("/ingresos")
+    @PostMapping("/grabar")
     public int grabarIngreso(@RequestBody IngresosDto request) {
         return ingresosService.grabarIngreso(request.getIdtra(), request.getDescripcion());
     }
