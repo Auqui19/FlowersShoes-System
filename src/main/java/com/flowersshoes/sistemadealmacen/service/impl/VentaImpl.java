@@ -135,7 +135,7 @@ public class VentaImpl implements IVenta {
         Ventas venta = ventaRepository.findById(idventa).orElse(null);
         if (venta != null) {
             StoredProcedureQuery query = entityManager.createStoredProcedureQuery("PA_ELIMINAR_VENTA")
-                    .registerStoredProcedureParameter("idventa", Integer.class, ParameterMode.IN)
+                    .registerStoredProcedureParameter("idv", Integer.class, ParameterMode.IN)
                     .setParameter("idventa", idventa);
             query.execute();
         }
@@ -146,8 +146,8 @@ public class VentaImpl implements IVenta {
         Ventas venta = ventaRepository.findById(idventa).orElse(null);
         if (venta != null) {
             StoredProcedureQuery query = entityManager.createStoredProcedureQuery("PA_RESTAURAR_VENTA")
-                    .registerStoredProcedureParameter("idventa", Integer.class, ParameterMode.IN)
-                    .setParameter("idventa", idventa);
+                    .registerStoredProcedureParameter("idv", Integer.class, ParameterMode.IN)
+                    .setParameter("idve", idventa);
             query.execute();
         }
     }
