@@ -1,13 +1,12 @@
 package com.flowersshoes.sistemadealmacen.service;
 
 import com.flowersshoes.sistemadealmacen.model.Stock;
+import com.flowersshoes.sistemadealmacen.model.Talla;
+
+import java.util.List;
 
 public interface IStock {
-    Stock SaveStock(Stock S);
 
-    Stock BuscarStock(Integer id);
-
-    void DeleteStock(Stock S);
-
-    Iterable<Stock> FindAllStock();
+    List<Stock> findAll();
+    Stock findById(Integer id);
 }

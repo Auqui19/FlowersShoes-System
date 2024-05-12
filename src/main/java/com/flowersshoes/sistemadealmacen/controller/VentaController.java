@@ -4,6 +4,7 @@ import com.flowersshoes.sistemadealmacen.model.Ventas;
 import com.flowersshoes.sistemadealmacen.model.dto.VentaDto;
 import com.flowersshoes.sistemadealmacen.service.impl.VentaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,33 @@ public class VentaController {
     @Autowired
     private VentaImpl ventaService;
 
+    @GetMapping("listado")
+    public ResponseEntity<?> listado(){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(ventaService.findAll());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error:\":\"Error. Por favor intente mas tarde.\"}");
+        }
+    }
+
+    @GetMapping("listadodetalle")
+    public ResponseEntity<?> listadodetalle(){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(ventaService.listarDetalleVentas());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error:\":\"Error. Por favor intente mas tarde.\"}");
+        }
+    }
+
+    @GetMapping("encontrar/{id}")
+    public ResponseEntity<?> findbyid(@PathVariable Integer id){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(ventaService.findById(id));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error:\":\"Error. Por favor intente mas tarde.\"}");
+        }
+    }
+
     @PostMapping("/save")
     public ResponseEntity<?> grabarVenta(@RequestBody VentaDto request) {
         int idVenta = ventaService.grabarVenta(request.getIdtra(), request.getIdcli(), request.getDetalles());
@@ -27,13 +55,5 @@ public class VentaController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void eliminarVenta(@PathVariable int id) {
-        ventaService.eliminarVenta(id);
-    }
 
-    @GetMapping("/listado")
-    public List<Object[]> listarVentas() {
-        return ventaService.listarVentas();
-    }
 }
