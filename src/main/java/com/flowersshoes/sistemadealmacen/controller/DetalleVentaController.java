@@ -4,6 +4,7 @@ import com.flowersshoes.sistemadealmacen.model.dto.DetalleVentaDto;
 import com.flowersshoes.sistemadealmacen.service.impl.VentaDetalleImpl;
 import com.flowersshoes.sistemadealmacen.service.impl.VentaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -17,14 +18,15 @@ public class DetalleVentaController {
     private VentaDetalleImpl ventaDetaService;
 
     @PostMapping("/grabar")
-    public void grabarDetalleVenta(@RequestBody DetalleVentaDto request) {
-        int idventa = request.getIdventa();
-        int idpro = request.getIdpro();
-        int cantidad = request.getCantidad();
-        BigDecimal precioUni = BigDecimal.valueOf(request.getPreciouni());
-        BigDecimal subtotal = BigDecimal.valueOf(request.getSubtotal());
-
-        ventaDetaService.grabarDetalleVenta(idventa, idpro, cantidad, precioUni, subtotal);
+    public ResponseEntity<?> grabarDetalleVenta(@RequestBody DetalleVentaDto request) {
+        try {
+            return ResponseEntity.status(200).body(ventaDetaService.grabarDetalleVenta(
+                    request.getIdventa(),
+                    request.getIdpro(),
+                    request.getCantidad()));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("{\"error\":\"Error. Por favor inténtelo más tarde.+ " + e.getMessage() + "}");
+        }
     }
 
     @DeleteMapping("/eliminar/{idventa}/detalles/{idpro}/{cantidad}")

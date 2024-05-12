@@ -29,7 +29,5 @@ public class DetalleVenta {
     private int cantidad;
     private double preciouni;
     private double subtotal;
-
-
 }
 

@@ -27,26 +27,30 @@ public class VentaDetalleImpl {
     private ProductoRepository productoRepository;
 
     @Transactional
-    public void grabarDetalleVenta(int idventa, int idpro, int cantidad, BigDecimal precioUni, BigDecimal subtotal) {
+    public String grabarDetalleVenta(int idventa, int idpro, int cantidad) {
         Ventas venta = ventaRepository.findById(idventa).orElse(null);
         Producto producto = productoRepository.findById(idpro).orElse(null);
 
-        if (venta != null && producto != null) {
+        if (producto != null) {
+            double precioUni = producto.getPrecio();
+            double subtotal = cantidad * precioUni;
+
             StoredProcedureQuery query = entityManager.createStoredProcedureQuery("PA_GRABAR_DETALLE_VENTA")
                     .registerStoredProcedureParameter("idventa", Integer.class, ParameterMode.IN)
                     .registerStoredProcedureParameter("idpro", Integer.class, ParameterMode.IN)
-                    .registerStoredProcedureParameter("cantidad", Integer.class, ParameterMode.IN)
-                    .registerStoredProcedureParameter("precioUni", BigDecimal.class, ParameterMode.IN)
-                    .registerStoredProcedureParameter("subtotal", BigDecimal.class, ParameterMode.IN)
+                    .registerStoredProcedureParameter("cant", Integer.class, ParameterMode.IN)
+                    .registerStoredProcedureParameter("precioUni", Double.class, ParameterMode.IN)
+                    .registerStoredProcedureParameter("subtotal", Double.class, ParameterMode.IN)
                     .setParameter("idventa", idventa)
                     .setParameter("idpro", idpro)
-                    .setParameter("cantidad", cantidad)
+                    .setParameter("cant", cantidad)
                     .setParameter("precioUni", precioUni)
                     .setParameter("subtotal", subtotal);
 
             query.execute();
+            return "Detalle de venta grabado exitosamente";
         } else {
-            throw new IllegalArgumentException("La venta o el producto no existen");
+            throw new IllegalArgumentException("El producto no existe");
         }
     }
 

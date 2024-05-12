@@ -17,7 +17,7 @@ public class VentaController {
     private VentaImpl ventaService;
 
     @PostMapping("/save")
-    public ResponseEntity<String> grabarVenta(@RequestBody VentaDto request) {
+    public ResponseEntity<?> grabarVenta(@RequestBody VentaDto request) {
         Long idVenta = ventaService.grabarVenta(request.getIdtra(), request.getIdcli());
 
         if (idVenta != null) {
