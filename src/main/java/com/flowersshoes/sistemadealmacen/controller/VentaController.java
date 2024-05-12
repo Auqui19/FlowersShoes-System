@@ -18,9 +18,9 @@ public class VentaController {
 
     @PostMapping("/save")
     public ResponseEntity<?> grabarVenta(@RequestBody VentaDto request) {
-        Long idVenta = ventaService.grabarVenta(request.getIdtra(), request.getIdcli());
+        int idVenta = ventaService.grabarVenta(request.getIdtra(), request.getIdcli(), request.getDetalles());
 
-        if (idVenta != null) {
+        if (idVenta != 0) {
             return ResponseEntity.ok("Venta creada con ID: " + idVenta);
         } else {
             return ResponseEntity.badRequest().body("Error al crear la venta. El cliente o el trabajador no existen.");

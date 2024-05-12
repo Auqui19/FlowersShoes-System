@@ -1,13 +1,11 @@
 package com.flowersshoes.sistemadealmacen.controller;
 
 import com.flowersshoes.sistemadealmacen.model.dto.DetalleVentaDto;
-import com.flowersshoes.sistemadealmacen.service.impl.VentaDetalleImpl;
 import com.flowersshoes.sistemadealmacen.service.impl.VentaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -15,7 +13,7 @@ import java.util.List;
 public class DetalleVentaController {
 
     @Autowired
-    private VentaDetalleImpl ventaDetaService;
+    private VentaImpl ventaDetaService;
 
     @PostMapping("/grabar")
     public ResponseEntity<?> grabarDetalleVenta(@RequestBody DetalleVentaDto request) {
