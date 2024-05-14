@@ -2,10 +2,12 @@ package com.flowersshoes.sistemadealmacen.service.impl;
 
 import com.flowersshoes.sistemadealmacen.model.Color;
 import com.flowersshoes.sistemadealmacen.model.Producto;
+import com.flowersshoes.sistemadealmacen.model.Stock;
 import com.flowersshoes.sistemadealmacen.model.Talla;
 import com.flowersshoes.sistemadealmacen.model.dto.ProductosDto;
 import com.flowersshoes.sistemadealmacen.repository.ColorRepository;
 import com.flowersshoes.sistemadealmacen.repository.ProductoRepository;
+import com.flowersshoes.sistemadealmacen.repository.StockRepository;
 import com.flowersshoes.sistemadealmacen.repository.TallaRepository;
 import com.flowersshoes.sistemadealmacen.service.IProducto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,12 @@ public class ProductoImpl implements IProducto {
     @Autowired
     private TallaRepository tallaRepository;
 
+    @Autowired
+    private StockRepository stockRepository;
+
+
+
+
     @Override
     public Producto save(ProductosDto productoDto) {
         Color color = colorRepository.findById(productoDto.getIdcolor()).orElse(null);
@@ -43,6 +51,21 @@ public class ProductoImpl implements IProducto {
 
         producto = productoRepository.save(producto);
         producto.setImagen(producto.getIdpro() + ".jpg");
+        Stock stock = new Stock();
+        stock.setProducto(producto);
+        stock.setCantidad(0);
+        boolean existeEnStock = false;
+        Iterable<Stock> stocks = stockRepository.findAll();
+        for (Stock s: stocks){
+            if (s.getProducto().getIdpro() == producto.getIdpro()){
+                existeEnStock = true;
+                break;
+            }
+        }
+        if (!existeEnStock){
+            stock = stockRepository.save(stock);
+        }
+
         return productoRepository.save(producto);
 
     }

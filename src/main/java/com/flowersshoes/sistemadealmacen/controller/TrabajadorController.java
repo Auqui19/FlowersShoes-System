@@ -1,4 +1,5 @@
 package com.flowersshoes.sistemadealmacen.controller;
+//import javax.servlet.http.HttpServletResponse;
 
 import com.flowersshoes.sistemadealmacen.model.Trabajador;
 import com.flowersshoes.sistemadealmacen.model.dto.TrabajadorDto;
@@ -27,7 +28,7 @@ public class TrabajadorController {
     @Autowired
     JWTAuthenticationConfig jwtAuthenticationConfig;
 
-    @PostMapping("/login")
+    @PostMapping("login")
     public LoginResponse login(@RequestBody Trabajador trabajador){
         Trabajador tra = trabajadorRepository.findByEmail(trabajador.getEmail());
         if(tra == null){

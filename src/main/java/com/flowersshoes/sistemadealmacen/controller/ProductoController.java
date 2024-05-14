@@ -1,6 +1,7 @@
 package com.flowersshoes.sistemadealmacen.controller;
 import com.flowersshoes.sistemadealmacen.model.dto.ProductosDto;
 import com.flowersshoes.sistemadealmacen.service.IProducto;
+import com.flowersshoes.sistemadealmacen.service.IStock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,9 @@ public class ProductoController {
     @Autowired
     private IProducto productoService;
 
+    @Autowired
+    private IStock stockService;
+
     @GetMapping("listado")
     public ResponseEntity<?> listado(){
         try {
@@ -20,6 +24,16 @@ public class ProductoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error:\":\"Error. Por favor intente mas tarde.\"}");
         }
     }
+
+    @GetMapping("listadostock")
+    public ResponseEntity<?> listadostock(){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(stockService.FindAllStock());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error:\":\"Error. Por favor intente mas tarde.\"}");
+        }
+    }
+
     @GetMapping("encontrar/{id}")
     public ResponseEntity<?> findbyid(@PathVariable Integer id){
         try {

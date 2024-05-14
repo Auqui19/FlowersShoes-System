@@ -19,11 +19,13 @@ public class VentaDto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idventa;
     private int idtra;
+    private String nomtra;
     private int idcli;
+    private String nomcli;
     private Date fecha;
     private double total;
-    private String estado;
     private String estadocomprobante;
+    private String estado;
 
     List<DetalleVentaDto> detalles;
 }

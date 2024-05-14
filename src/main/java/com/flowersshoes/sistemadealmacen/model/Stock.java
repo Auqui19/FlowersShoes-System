@@ -14,6 +14,7 @@ import lombok.ToString;
 @Table(name = "tb_stock")
 public class Stock {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idstock;
 
     @ManyToOne(cascade = CascadeType.ALL)

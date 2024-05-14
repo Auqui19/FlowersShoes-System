@@ -17,6 +17,7 @@ public class ColorImpl implements IColor {
     @Override
     public Color save(Color color) {
         color.setEstado("Activo");
+
         return colorRepository.save(color);
     }
 

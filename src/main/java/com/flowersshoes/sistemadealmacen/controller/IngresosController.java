@@ -1,7 +1,9 @@
 package com.flowersshoes.sistemadealmacen.controller;
 
 import com.flowersshoes.sistemadealmacen.model.Ingresos;
+import com.flowersshoes.sistemadealmacen.model.dto.DetalleIngresoDto;
 import com.flowersshoes.sistemadealmacen.model.dto.IngresosDto;
+import com.flowersshoes.sistemadealmacen.model.dto.VentaDto;
 import com.flowersshoes.sistemadealmacen.model.payload.MensajeResponse;
 import com.flowersshoes.sistemadealmacen.repository.IngresosRepository;
 import com.flowersshoes.sistemadealmacen.service.impl.IngresosImpl;
@@ -24,15 +26,75 @@ public class IngresosController {
     @Autowired
     private IngresosRepository ingresosRepository;
 
-    @PostMapping("/grabar")
-    public int grabarIngreso(@RequestBody IngresosDto request) {
-        return ingresosService.grabarIngreso(request.getIdtra(), request.getDescripcion());
+    @GetMapping("/listado")
+    public ResponseEntity<?> ListarIngresos() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(ingresosService.listarIngresos());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error:\":\"Error. Por favor intente mas tarde.\"}");
+        }
     }
 
+    @PostMapping("/save")
+    public ResponseEntity<?> grabarIngreso(@RequestBody IngresosDto request) {
+
+
+        if (request.getDescripcion() != null) {
+            int idIngreso = ingresosService.grabarIngreso(request.getIdtra(), request.getDescripcion(), request.getDetalles());
+            return ResponseEntity.ok("Ingreso creado con ID: " + idIngreso);
+        } else {
+            return ResponseEntity.badRequest().body("Error al crear el ingreso. El el trabajador no existe.");
+        }
+    }
+
+}
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+    @GetMapping("/listado")
+    public ResponseEntity<?> listado(){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(ingresosService.findAll());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error:\":\"Error. Por favor intente mas tarde.\"}");
+        }
+    }
 
     // Borrar si es posible
     @GetMapping("/ingreso")
@@ -170,3 +232,4 @@ public class IngresosController {
                 ,HttpStatus.OK);
     }
 }
+**/

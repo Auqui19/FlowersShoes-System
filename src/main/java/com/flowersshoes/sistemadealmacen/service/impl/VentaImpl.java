@@ -1,6 +1,9 @@
 package com.flowersshoes.sistemadealmacen.service.impl;
 
-import com.flowersshoes.sistemadealmacen.model.*;
+import com.flowersshoes.sistemadealmacen.model.Cliente;
+import com.flowersshoes.sistemadealmacen.model.Producto;
+import com.flowersshoes.sistemadealmacen.model.Trabajador;
+import com.flowersshoes.sistemadealmacen.model.Ventas;
 import com.flowersshoes.sistemadealmacen.model.dto.DetalleVentaDto;
 import com.flowersshoes.sistemadealmacen.model.dto.VentaDto;
 import com.flowersshoes.sistemadealmacen.repository.*;
@@ -32,53 +35,6 @@ public class VentaImpl implements IVenta {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    @Autowired
-    private DetalleVentaRepository detalleVentaRepository;
-
-    @Override
-    public Ventas findById(Integer id) {
-        return ventaRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public List<Ventas> findAll() {
-        return (List<Ventas>) ventaRepository.findAll();
-    }
-
-    @Override
-    public List<DetalleVenta> listarDetalleVentas() {
-        return (List<DetalleVenta>) detalleVentaRepository.findAll();
-    }
-
-    // Procedures
-    @Transactional
-    public String grabarDetalleVenta(int idventa, int idpro, int cantidad) {
-        Ventas venta = ventaRepository.findById(idventa).orElse(null);
-        Producto producto = productoRepository.findById(idpro).orElse(null);
-
-        if (producto != null && venta != null) {
-            double precioUni = producto.getPrecio();
-            double subtotal = cantidad * precioUni;
-
-            StoredProcedureQuery query = entityManager.createStoredProcedureQuery("PA_GRABAR_DETALLE_VENTA")
-                    .registerStoredProcedureParameter("idv", Integer.class, ParameterMode.IN)
-                    .registerStoredProcedureParameter("idpro", Integer.class, ParameterMode.IN)
-                    .registerStoredProcedureParameter("cant", Integer.class, ParameterMode.IN)
-                    .registerStoredProcedureParameter("precioUni", Double.class, ParameterMode.IN)
-                    .registerStoredProcedureParameter("subtotal", Double.class, ParameterMode.IN)
-                    .setParameter("idv", idventa)
-                    .setParameter("idpro", idpro)
-                    .setParameter("cant", cantidad)
-                    .setParameter("precioUni", precioUni)
-                    .setParameter("subtotal", subtotal);
-
-            query.execute();
-            return "Detalle de venta grabado exitosamente";
-        } else {
-            throw new IllegalArgumentException("El producto no existe");
-        }
-    }
-
 
     @Transactional
     public int grabarVenta(int idtra, int idcli, List<DetalleVentaDto> detalles) {
@@ -102,6 +58,78 @@ public class VentaImpl implements IVenta {
             return 0;
         }
     }
+
+
+    // Procedures
+    @Transactional
+    public String grabarDetalleVenta(int idventa, int idpro, int cantidad) {
+        Ventas venta = ventaRepository.findById(idventa).orElse(null);
+        Producto producto = productoRepository.findById(idpro).orElse(null);
+
+        if (producto != null && venta != null) {
+            double precioUni = producto.getPrecio();
+            double subtotal = cantidad * precioUni;
+
+            StoredProcedureQuery query = entityManager.createStoredProcedureQuery("PA_GRABAR_DETALLE_VENTA")
+                    .registerStoredProcedureParameter("idv", Integer.class, ParameterMode.IN)
+                    .registerStoredProcedureParameter("idprod", Integer.class, ParameterMode.IN)
+                    .registerStoredProcedureParameter("cant", Integer.class, ParameterMode.IN)
+                    .registerStoredProcedureParameter("precioUni", Double.class, ParameterMode.IN)
+                    .registerStoredProcedureParameter("subtotal", Double.class, ParameterMode.IN)
+                    .setParameter("idv", idventa)
+                    .setParameter("idprod", idpro)
+                    .setParameter("cant", cantidad)
+                    .setParameter("precioUni", precioUni)
+                    .setParameter("subtotal", subtotal);
+
+            query.execute();
+            return "Detalle de venta grabado exitosamente";
+        } else {
+            throw new IllegalArgumentException("El producto no existe");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Transactional
     public void eliminarVenta(int idventa) {
@@ -170,4 +198,45 @@ public class VentaImpl implements IVenta {
     }
 
 
+    @Transactional
+    @Override
+    public Ventas save(VentaDto ventaDto) {
+        Trabajador trabajador = trabajadorRepository.findById(ventaDto.getIdtra()).orElse(null);
+        Cliente cliente = clienteRepository.findById(ventaDto.getIdcli()).orElse(null);
+        Ventas venta = new Ventas();
+        venta.setTrabajador(trabajador);
+        venta.setCliente(cliente);
+        venta.setIdventa(ventaDto.getIdventa());
+        venta.setFecha(ventaDto.getFecha());
+        venta.setTotal(ventaDto.getTotal());
+        venta.setEstado(ventaDto.getEstado());
+        venta.setEstadocomprobante(ventaDto.getEstadocomprobante());
+
+        venta = ventaRepository.save(venta);
+
+        return ventaRepository.save(venta);
+
+    }
+
+    @Transactional
+    @Override
+    public Ventas findById(Integer id) {
+        return ventaRepository.findById(id).orElse(null);
+    }
+
+    @Transactional
+    @Override
+    public void delete(Ventas venta) {
+        ventaRepository.delete(venta);
+    }
+
+    @Override
+    public Iterable<Ventas> findAll() {
+        return ventaRepository.findAll();
+    }
+
+    @Override
+    public boolean existsById(Integer id) {
+        return ventaRepository.existsById(id);
+    }
 }

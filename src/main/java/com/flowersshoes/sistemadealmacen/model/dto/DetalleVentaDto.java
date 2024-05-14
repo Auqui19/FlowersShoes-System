@@ -13,8 +13,6 @@ public class DetalleVentaDto {
     private int idventa;
     private int idpro;
     private int cantidad;
-
-    /*
     private double preciouni;
-    private double subtotal; */
+    private double subtotal;
 }

@@ -1,19 +1,21 @@
 package com.flowersshoes.sistemadealmacen.model.dto;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 @Data
 @ToString
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class DetalleIngresoDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
     private int idingre;
     private int idpro;
+    private String imagen;
+    private String nompro;
+    private String color;
+    private String talla;
     private int cantidad;
+
 }

@@ -7,17 +7,25 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @ToString
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class IngresosDto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idingre;
+    private int idtra;
+    private String nomtra;
     private String descripcion;
     private String estado;
     private Date fecha;
-    private int idtra;
+
+
+    List<DetalleIngresoDto> detalles;
+
 }

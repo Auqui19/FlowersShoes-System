@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/color/")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ColorController {
 
     @Autowired
     private IColor colorService;
 
     @GetMapping("listado")
+
     public ResponseEntity<?> listado(){
         try {
             return ResponseEntity.status(HttpStatus.OK).body(colorService.findAll());

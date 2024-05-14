@@ -20,4 +20,8 @@ public class ProductosDto {
     private String temporada;
     private String descripcion;
 
+
+
+
+
 }

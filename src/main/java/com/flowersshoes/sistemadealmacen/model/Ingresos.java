@@ -25,4 +25,6 @@ public class Ingresos {
     @JoinColumn(name = "idtra")
     private Trabajador trabajador;
 
+
+
 }
