@@ -17,10 +17,11 @@ public class StockController {
     @Autowired
     StockImpl stockService;
 
+
     @GetMapping("listado")
     public ResponseEntity<?> listado(){
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(stockService.findAll());
+            return ResponseEntity.status(HttpStatus.OK).body(stockService.FindAllStock());
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error:\":\"Error. Por favor intente mas tarde.\"}");
         }
@@ -35,4 +36,5 @@ public class StockController {
                     .body("{\"error:\":\"Error. Por favor intente mas tarde.\"}");
         }
     }
+
 }

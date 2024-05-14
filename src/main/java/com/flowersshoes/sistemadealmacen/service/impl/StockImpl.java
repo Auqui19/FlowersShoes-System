@@ -18,16 +18,17 @@ public class StockImpl implements IStock {
         return stockRepository.save(S);
     }
 
-    @Override
-    public Stock BuscarStock(Integer id) {
-        return null;
-    }
 
     @Override
     public void DeleteStock(Stock S) {
 
     }
 **/
+    @Override
+    public Stock findById(Integer id) {
+        return null;
+    }
+
     @Override
     public Iterable<Stock> FindAllStock() {
         return stockRepository.findAll();

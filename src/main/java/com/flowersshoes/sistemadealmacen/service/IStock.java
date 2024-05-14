@@ -8,8 +8,8 @@ import java.util.List;
 public interface IStock {
 
     Iterable<Stock> FindAllStock();
-    /*
+
     Stock findById(Integer id);
 
-     */
+
 }
