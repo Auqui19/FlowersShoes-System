@@ -7,6 +7,9 @@ import java.util.List;
 
 public interface IStock {
 
-    List<Stock> findAll();
+    Iterable<Stock> FindAllStock();
+    /*
     Stock findById(Integer id);
+
+     */
 }

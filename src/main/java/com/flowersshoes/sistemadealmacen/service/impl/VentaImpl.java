@@ -129,7 +129,7 @@ public class VentaImpl implements IVenta {
 
 
 
-
+/**
 
     @Transactional
     public void eliminarVenta(int idventa) {
@@ -238,5 +238,5 @@ public class VentaImpl implements IVenta {
     @Override
     public boolean existsById(Integer id) {
         return ventaRepository.existsById(id);
-    }
+    }**/
 }

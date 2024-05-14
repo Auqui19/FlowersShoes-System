@@ -12,7 +12,7 @@ public class StockImpl implements IStock {
 
     @Autowired
     private StockRepository stockRepository;
-
+/**
     @Override
     public Stock SaveStock(Stock S) {
         return stockRepository.save(S);
@@ -27,7 +27,7 @@ public class StockImpl implements IStock {
     public void DeleteStock(Stock S) {
 
     }
-
+**/
     @Override
     public Iterable<Stock> FindAllStock() {
         return stockRepository.findAll();

@@ -7,8 +7,8 @@ import com.flowersshoes.sistemadealmacen.model.dto.VentaDto;
 import java.util.List;
 
 public interface IVenta {
-
+/**
     Ventas findById(Integer id);
     List<Ventas> findAll();
-    List<DetalleVenta> listarDetalleVentas();
+    List<DetalleVenta> listarDetalleVentas(); **/
 }
