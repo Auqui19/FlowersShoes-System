@@ -23,7 +23,7 @@ public class Talla {
     private String talla;
     private String estado;
 
-    @OneToMany(mappedBy = "talla" , cascade = {CascadeType.PERSIST , CascadeType.REMOVE})
+    @OneToMany(mappedBy = "talla"  , cascade = {CascadeType.PERSIST , CascadeType.REMOVE})
     @JsonIgnore
     private List<Producto> productos;
 
