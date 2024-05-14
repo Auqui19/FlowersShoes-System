@@ -6,7 +6,6 @@ import com.flowersshoes.sistemadealmacen.model.Producto;
 import com.flowersshoes.sistemadealmacen.model.Trabajador;
 import com.flowersshoes.sistemadealmacen.model.dto.DetalleIngresoDto;
 import com.flowersshoes.sistemadealmacen.model.dto.IngresosDto;
-import com.flowersshoes.sistemadealmacen.repository.DetalleIngresosRepository;
 import com.flowersshoes.sistemadealmacen.repository.IngresosRepository;
 import com.flowersshoes.sistemadealmacen.repository.ProductoRepository;
 import com.flowersshoes.sistemadealmacen.repository.TrabajadorRepository;
@@ -30,7 +29,6 @@ public class IngresosImpl implements IIngresos {
 
     @Autowired
     private IngresosRepository ingresosRepository;
-    private DetalleIngresosRepository detalleIngresosRepositoryRepository;
 
     @Autowired
     private TrabajadorRepository trabajadorRepository;
