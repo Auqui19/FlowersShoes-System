@@ -6,11 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 //Notations
-@Data //Parte de Lombok agrega auto "To string", "equals", "hashcode", "Get and Set" ayuda a reducir code
-@NoArgsConstructor //Parte de Lombok crea un constructor sin argumentos para la clase
-@AllArgsConstructor //Parte de Lombok crea un constructor con todos los argumentos
-@ToString //Genera auto el metodo "ToString"
-@Entity //Marca la clase como entidad, representa una tabla de la base de datos
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Entity
 @Table(name = "tb_stock")
 public class Stock {
     @Id

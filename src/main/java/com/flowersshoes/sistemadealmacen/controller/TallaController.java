@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/talla/")
+@CrossOrigin(origins = "http://localhost:4200")
 public class TallaController {
     @Autowired
     private ITalla tallaService;

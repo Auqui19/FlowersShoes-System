@@ -1,7 +1,5 @@
 package com.flowersshoes.sistemadealmacen.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.flowersshoes.sistemadealmacen.model.Trabajador;
 import jakarta.persistence.*;
 import lombok.*;
 

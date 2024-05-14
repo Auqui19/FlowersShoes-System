@@ -1,25 +1,6 @@
 package com.flowersshoes.sistemadealmacen.service;
 
-import com.flowersshoes.sistemadealmacen.model.DetalleIngresos;
-import com.flowersshoes.sistemadealmacen.model.Ingresos;
-import com.flowersshoes.sistemadealmacen.model.dto.IngresosDto;
 
 public interface IIngresos {
 
-    //Guardar un Ingreso
-    //Ingresos save(IngresosDto ingresos);
-
-    //Buscar un ingreso por su ID
-    //Ingresos findById(Integer id);
-
-    //Eliminar un ingreso
-    //void delete(Ingresos ingresos);
-
-    //Listar todos los ingresos
-    //Iterable<Ingresos> findAll();
-
-    //Iterable<DetalleIngresos> findAlldi();
-
-    //Busar si exite un ID de ingreso
-   // boolean existsById(Integer id);
 }

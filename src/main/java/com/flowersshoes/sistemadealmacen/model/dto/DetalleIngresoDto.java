@@ -1,6 +1,5 @@
 package com.flowersshoes.sistemadealmacen.model.dto;
 
-import jakarta.persistence.*;
 import lombok.*;
 
 @Data

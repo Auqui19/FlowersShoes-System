@@ -1,7 +1,5 @@
 package com.flowersshoes.sistemadealmacen.controller;
-
 import com.flowersshoes.sistemadealmacen.model.Color;
-import com.flowersshoes.sistemadealmacen.model.Talla;
 import com.flowersshoes.sistemadealmacen.service.IColor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
