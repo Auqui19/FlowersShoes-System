@@ -1,0 +1,26 @@
+<app-header />
+<div class="container">
+    <h3 class="text-center mt-5 pb-4 mb-4 border-bottom">Mantenimiento</h3>
+
+    <div class="d-flex justify-content-between align-items-center  pb-4 mb-4 border-bottom">
+        <button href="#" [routerLink]="['/color/listado']" class=" btn bgRosa pb-2"><i class="fa-solid fa-arrow-left fa-beat pt-0 me-3" style="color: #dfb9c6;"></i>Atras</button>
+        <h5 class="text-center">Nuevo Color</h5>
+        <div style="visibility: hidden;">
+            <button href="#" [routerLink]="['/color/listado']" class=" btn bgRosa pb-2"><i class="fa-solid fa-arrow-left fa-beat pt-0 me-3" style="color: #dfb9c6;"></i>Atras</button>
+        </div>
+    </div>
+  
+    
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form-group">
+            <label for="color">Color</label>
+            <input formControlName="color" id="color" type="text" class="form-control">
+                
+        </div>
+        <div class="form-group pt-3">
+            <input type="submit" value="Guardar" class="btn bgRosa w-100" />
+        </div>
+       
+    </form>
+</div>

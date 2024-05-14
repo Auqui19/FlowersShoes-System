@@ -1,0 +1,40 @@
+<div class="container">
+    <h3 class="text-center mt-5 pb-4 mb-4 border-bottom">Mantenimiento</h3>
+
+    <div class="d-flex justify-content-between align-items-center  pb-4 mb-4 border-bottom">
+        <button href="#" [routerLink]="['/color/listado']" class=" btn bgRosa pb-2"><i class="fa-solid fa-arrow-left fa-beat pt-0 me-3" style="color: #dfb9c6;"></i>Atras</button>
+        <h5 class="text-center">Editar Color</h5>
+        <a href="#" [routerLink]="['/color/listado']" type="button" class="btn btn-light bgRosa">
+            <i class="fa-solid fa-plus fa-beat" style="color: #dfb9c6;"></i> &nbsp; Nuevo Color
+        </a>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <div class="form-group">
+            <label for="idcolor">id</label>
+            <input 
+                formControlName="idcolor"
+                id="idcolor" 
+                type="text" 
+                [(ngModel)]="color.idcolor"
+                class="form-control">
+           
+        </div>
+
+        <div class="form-group">
+            <label for="color">color</label>
+            <input 
+                formControlName="color"
+                id="color" 
+                type="text" 
+                [(ngModel)]="color.color"
+                class="form-control">
+           
+        </div>
+
+        <div class="form-group pt-3">
+            <input type="submit" value="Actualizar" class="btn bgRosa w-100" />
+        </div>
+    </form>
+</div>

@@ -1,0 +1,44 @@
+
+<div class="container bg-white" >
+    <div class="container mt-5" >
+        <div class="row justify-content-center">
+            <div class="col-md-4 mt-5 pt-5" >
+                <div class="card px-4 py-5 border-0"  style="border-radius: 1rem; background-color: #f7e8e980; border-radius: 10px;">
+                    <div class="card-body">
+                        <form [formGroup]="form" (ngSubmit)="submit()">
+                            <div class="mb-3">
+                                <a class="navbar-brand  d-block text-center">
+                                    
+                                    <img src="../../../assets/logo.png" alt="FLOWERS SHOES" style="height: 50px;">
+                                </a>
+                                <h6 class="text-center mb-5">Login</h6>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-envelope" style="color: #dfb9c6;"></i>
+                                    </span>
+                                    <input formControlName="email" id="email" type="text" class="form-control">
+                                    
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-lock" style="color: #dfb9c6;"></i>
+                                    </span>
+                                    <input formControlName="password" id="password" Type="password" class="form-control">
+                                   
+                                
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2 mt-5">
+                                <button type="submit" class="btn bgRosa" >Iniciar Sesión</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</div>
+
