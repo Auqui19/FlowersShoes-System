@@ -18,6 +18,6 @@ export class AuthService implements CanActivate {
       return false; // Retorna falso para evitar el acceso a la ruta protegida
     }
 
-    return true; // Permite el acceso a la ruta protegida si hay un token
+    return true; 
   }
 }
